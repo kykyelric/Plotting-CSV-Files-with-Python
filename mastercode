@@ -1,0 +1,87 @@
+import matplotlib.pyplot as plt
+
+#for reading files
+
+"""exoplanets = open("ExoplanetCandidates.csv", "r")
+
+for line in exoplanets.readlines():
+	print(line)
+	
+exoplanets.close()"""
+
+#for manipulating files
+
+#opens the file to read
+exoplanets = open("ExoplanetCandidates.csv", "r")
+
+"""
+Keep in mind that you must be in the correct folder when putting the file name above.
+Check using:
+import os
+os.getcwd()
+Change folders using:
+os.chdir("new\\file\\path")
+"""
+
+#establishes empty lists
+radius_ratio = []
+period = []
+star_name = []
+
+#iterates over each line in the file, splits by commas, and appends values to the lists
+for line in exoplanets.readlines():
+	x = line.split(",")
+	radius_ratio.append(x[4])
+	period.append(x[5])
+	star_name.append(x[1])
+
+#gets rid of titles to leave only numbers and quotes
+radius_ratio = radius_ratio[1:]
+period = period[1:]
+
+#gets rid of quotes to leave numbers and empty strings
+radius_ratio = [s.strip('"') for s in radius_ratio]
+period = [s.replace('"','') for s in period]
+
+#gets rid of empty strings in list
+while '' in radius_ratio:
+	radius_ratio.remove('')
+while '' in period:
+	period.remove('')
+
+#converts strings to numbers
+for number in radius_ratio:
+	float(number)
+for number in period:
+	float(number)
+	
+#prints new lists
+print(radius_ratio)
+print(period)
+
+#plot data with specifications
+plt.xlabel("Radius Ratio")
+plt.ylabel("Period")
+plt.title("Exoplanet Data")
+plt.xlim(.008,.03)
+plt.ylim(0,11)
+plt.scatter(radius_ratio, period)
+
+#assign star names to points
+for i, txt in enumerate(star_name):
+	plt.annotate(txt, (radius_ratio[i], period[i]))
+	
+"""
+How does enumerate work? It assigns every item in a sequence as 
+(0, thing[0]), (1, thing[1]), (2, thing[2]), etc. 
+In the above for loop, plt.annotate is taking the thing[x] as its txt value 
+and the corresponding number as i, 
+which is put into the two plotted lists to match with the name's position in the list. 
+As such, every txt is lined up with a certain dot on the scatter plot.
+"""
+
+#show the plot
+plt.show
+
+#closes the file
+exoplanets.close()
