@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-#for reading files
+#for reading files (change file path to fit your file)
 
 """exoplanets = open("ExoplanetCandidates.csv", "r")
 
@@ -11,7 +11,7 @@ exoplanets.close()"""
 
 #for manipulating files
 
-#opens the file to read
+#opens the file to read (change file path to fit your file)
 exoplanets = open("ExoplanetCandidates.csv", "r")
 
 """
@@ -23,12 +23,13 @@ Change folders using:
 os.chdir("new\\file\\path")
 """
 
-#establishes empty lists
+#establishes empty lists (make as many as you plan to plot or manipulate)
 radius_ratio = []
 period = []
 star_name = []
 
 #iterates over each line in the file, splits by commas, and appends values to the lists
+#make sure to switch out the numbers in brackets [] for your specific columns of data
 for line in exoplanets.readlines():
 	x = line.split(",")
 	radius_ratio.append(x[4])
