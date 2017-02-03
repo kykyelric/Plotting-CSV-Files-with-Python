@@ -3,10 +3,8 @@ import matplotlib.pyplot as plt
 #for reading files (change file path to fit your file)
 
 """exoplanets = open("ExoplanetCandidates.csv", "r")
-
 for line in exoplanets.readlines():
 	print(line)
-	
 exoplanets.close()"""
 
 #for manipulating files
